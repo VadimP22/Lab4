@@ -37,7 +37,10 @@ public class SprutsHouse extends House {
 
     @Override
     public void passDay() {
+        //debug
         foodSource.addDish(new Dish("l"));
+        foodSource.addDish(new Dish("o"));
+        foodSource.addDish(new Dish("k"));
         //breakfast
         messagePrinter.print("Spruts have a breakfast...");
         owner.eat(foodSource, storage);

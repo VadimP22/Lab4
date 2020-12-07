@@ -39,13 +39,28 @@ public class Cupboard implements prog.lab3.FoodSource {
 
     @Override
     public Item getNewDish() {
+        if (countOfNames == 0) {
+            throw new NoDishesException();
+        }
         return new Dish(names[random(countOfNames)]);
     }
 
     @Override
     public void addDish(Item item) {
-        names = new String[1];
-        names[0] = "lol";
+        if (countOfNames == 0) {
+            names = new String[1];
+            names[0] = item.getName();
+            countOfNames = countOfNames + 1;
+            return;
+        }
+
+        String[] newArray = new String[countOfNames + 1];
+        for (int i = 0; i < countOfNames; i++) {
+            newArray[i] = names[i];
+        }
+        newArray[countOfNames] = item.getName();
+        names = newArray;
+        countOfNames = countOfNames + 1;
     }
 
 }

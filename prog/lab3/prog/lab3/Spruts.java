@@ -39,12 +39,19 @@ public class Spruts extends Human {
     @Override
     public void eat(FoodSource foodSource, Storage storage) {
         //breakfast
-        Item dish = foodSource.getNewDish();
-        messagePrinter.print("Spruts takes " + dish.getName());
-        messagePrinter.print("Spruts prepares food");
-        messagePrinter.print("Spruts eats food from/using " + dish.getName());
-        messagePrinter.print("Spruts puts dirty dishes on the floor");
-        storage.addItem(dish);
+
+
+        cook(foodSource);
+        try {
+            Item dish = foodSource.getNewDish();
+            messagePrinter.print("Spruts takes " + dish.getName());
+            messagePrinter.print("Spruts prepares food");
+            messagePrinter.print("Spruts eats food from/using " + dish.getName());
+            messagePrinter.print("Spruts puts dirty dishes on the floor");
+            storage.addItem(dish);
+        } catch (NoDishesException e) {
+            messagePrinter.print("In cupboard no dishes...");
+        }
     }
 
     @Override
